@@ -1,3 +1,4 @@
+import logging
 import contextlib
 
 from fastapi_users.exceptions import UserAlreadyExists
@@ -28,7 +29,7 @@ async def create_user(
                         )
                     )
     except UserAlreadyExists:
-        pass
+        logging.exception('UserAlreadyExists occurred')  # Запись ошибки в лог
 
 
 async def create_first_superuser():

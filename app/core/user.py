@@ -1,3 +1,4 @@
+import logging
 from typing import Optional, Union
 
 from fastapi import Depends, Request
@@ -12,6 +13,7 @@ from app.core.config import settings
 from app.core.db import get_async_session
 from app.models.user import User
 from app.schemas.user import UserCreate
+from .constants import required_len
 
 
 async def get_user_db(session: AsyncSession = Depends(get_async_session)):
@@ -38,7 +40,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
         password: str,
         user: Union[UserCreate, User],
     ) -> None:
-        if len(password) < 3:
+        if len(password) < required_len:
             raise InvalidPasswordException(
                 reason='Password should be at least 3 characters'
             )
@@ -51,6 +53,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
             self, user: User, request: Optional[Request] = None
     ):
         print(f'Пользователь {user.email} зарегистрирован.')
+        logging.exception('UserAlreadyExists occurred')  # Запись ошибки в лог
 
 
 async def get_user_manager(user_db=Depends(get_user_db)):
