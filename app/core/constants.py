@@ -1,1 +1,1 @@
-required_len = 3
+REQUIRED_LEN = 3

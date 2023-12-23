@@ -29,7 +29,7 @@ async def create_user(
                         )
                     )
     except UserAlreadyExists:
-        logging.exception('UserAlreadyExists occurred')  # Запись ошибки в лог
+        logging.exception('UserAlreadyExists occurred')
 
 
 async def create_first_superuser():
