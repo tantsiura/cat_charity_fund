@@ -18,7 +18,7 @@
 ## Установка
 1. Склонируйте репозиторий:
 ```
-git clone git@github.com:Hastred45/cat_charity_fund.git
+git clone git@github.com:tantsiura/cat_charity_fund.git
 ```
 2. Активируйте venv и установите зависимости:
 ```
